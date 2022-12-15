@@ -1,3 +1,4 @@
+import Fuse from '/fuse.js'
 
 // Creating init Fuse module based on preloaded json
 var fuse;
@@ -21,6 +22,7 @@ const resultsArea = document.getElementById('results');
 searchBar.addEventListener("keyup", () => {
     if (searchBar.value.length > 1) {
         var result = fuse.search(searchBar.value);
+        var i;
         resultsArea.innerHTML = "";
         for (i = 0; i < result.length; i ++) {
             var item = `<li>${result[i].item.text}</li>`;
