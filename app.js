@@ -1,5 +1,7 @@
 import Fuse from '/fuse.js'
 
+
+
 // Creating init Fuse module based on preloaded json
 var fuse;
 fetch('data.json')
@@ -10,10 +12,10 @@ function initFuse(data) {
     const scopes = {
         includeScore: true,
         keys: [
-            "text"
+            "attributes.title.en"
         ]
     }
-    fuse = new Fuse(data, scopes);
+    fuse = new Fuse(data['data'], scopes);
 }
 
 // Create Search
@@ -25,7 +27,7 @@ searchBar.addEventListener("keyup", () => {
         var i;
         resultsArea.innerHTML = "";
         for (i = 0; i < result.length; i ++) {
-            var item = `<li>${result[i].item.text}</li>`;
+            var item = `<li>${result[i].item.id}</li>`;
             resultsArea.innerHTML += item;
         }
     }
